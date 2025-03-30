@@ -1,7 +1,7 @@
 
 import { AuthResponse, Category, CheckoutData, LoginCredentials, Order, PaymentData, Product, RegisterData, User } from "@/types";
 
-const API_URL = 'https://api.example.com'; // Replace with your actual API URL
+const API_URL = 'http://127.0.0.1:5000'; // Replace with your actual API URL
 
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
