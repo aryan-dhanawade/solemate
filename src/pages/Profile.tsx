@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/components/ui/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 import { getProfile } from '@/services/api';
 import { User } from '@/types';
@@ -70,7 +70,7 @@ const Profile = () => {
     e.preventDefault();
     setIsUpdating(true);
     
-    // Simulate profile update - In a real app, this would be an API call
+    // Simulate profile update
     setTimeout(() => {
       setProfile(prev => prev ? { ...prev, name, email, phone, address } : null);
       
@@ -97,7 +97,7 @@ const Profile = () => {
     
     setIsChangingPassword(true);
     
-    // Simulate password change - In a real app, this would be an API call
+    // Simulate password change
     setTimeout(() => {
       toast({
         title: "Password Changed",

@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const imageUrl = product.image_url || 'https://placehold.co/300x300?text=Shoe';
 
   return (
-    <Link to={`/products/${product.product_id}`}>
+    <Link to={`/products/${product.id}`}>
       <div className="product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg">
         <div className="relative h-60 overflow-hidden">
           <img 

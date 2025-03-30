@@ -8,7 +8,7 @@ import { Category } from '@/types';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/components/ui/use-toast';
 import { AlertCircle } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -78,7 +78,7 @@ const Categories = () => {
           {isLoading 
             ? renderSkeletons() 
             : categories.map((category) => (
-                <Card key={category.category_id} className="flex flex-col h-full">
+                <Card key={category.id} className="flex flex-col h-full">
                   <CardHeader>
                     <CardTitle>{category.name}</CardTitle>
                     <CardDescription>Explore our collection of {category.name.toLowerCase()}</CardDescription>
@@ -88,7 +88,7 @@ const Categories = () => {
                   </CardContent>
                   <CardFooter>
                     <Button asChild className="w-full">
-                      <Link to={`/products?category=${category.category_id}`}>View Products</Link>
+                      <Link to={`/products?category=${category.id}`}>View Products</Link>
                     </Button>
                   </CardFooter>
                 </Card>

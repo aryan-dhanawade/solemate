@@ -1,6 +1,6 @@
 
 export interface User {
-  customer_id?: number;
+  id?: number;
   name: string;
   email: string;
   phone?: string;
@@ -8,10 +8,8 @@ export interface User {
 }
 
 export interface AuthResponse {
-  token?: string;
-  access_token?: string;
-  message: string;
-  user?: User;
+  token: string;
+  user: User;
 }
 
 export interface LoginCredentials {
@@ -36,8 +34,7 @@ export interface Product {
   description: string;
   price: number;
   stock_quantity: number;
-  category_id?: number;
-  category?: string;
+  category_id: number;
   image_url?: string;
 }
 
@@ -46,21 +43,19 @@ export interface CartItem {
   quantity: number;
 }
 
-export interface OrderItem {
-  order_item_id?: number;
-  product_id: number;
-  quantity: number;
-  price?: number;
-  product?: Product;
-}
-
 export interface Order {
   order_id: number;
-  customer_id?: number;
+  customer_id: number;
   order_date: string;
   status: string;
   total_amount: number;
-  order_items?: OrderItem[];
+  items: OrderItem[];
+}
+
+export interface OrderItem {
+  product_id: number;
+  quantity: number;
+  product?: Product;
 }
 
 export interface CheckoutData {
