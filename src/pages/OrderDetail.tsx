@@ -7,8 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
-import { getOrderById, getPaymentByOrderId } from '@/services/api';
-import { Order } from '@/types';
+import { getOrderById, getPaymentByOrderId, getProductById } from '@/services/api';
+import { Order, Product } from '@/types';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle, ArrowLeft, CreditCard, Loader2, Package } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -24,6 +24,7 @@ const OrderDetail = () => {
   
   const [order, setOrder] = useState<Order | null>(null);
   const [payment, setPayment] = useState<any | null>(null);
+  const [products, setProducts] = useState<Record<number, Product>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -43,6 +44,27 @@ const OrderDetail = () => {
         setIsLoading(true);
         const orderData = await getOrderById(orderId);
         setOrder(orderData);
+        
+        // Fetch product details for each order item
+        const productPromises = orderData.order_items.map(async (item) => {
+          try {
+            return await getProductById(item.product_id);
+          } catch (err) {
+            console.error(`Failed to fetch product ${item.product_id}:`, err);
+            return null;
+          }
+        });
+        
+        const productResults = await Promise.all(productPromises);
+        const productMap: Record<number, Product> = {};
+        
+        productResults.forEach(product => {
+          if (product) {
+            productMap[product.product_id] = product;
+          }
+        });
+        
+        setProducts(productMap);
         
         try {
           const paymentData = await getPaymentByOrderId(orderId);
@@ -114,7 +136,7 @@ const OrderDetail = () => {
         </Link>
         
         <div className="flex flex-wrap justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold">Order #{order.id}</h1>
+          <h1 className="text-3xl font-bold">Order #{order.order_id}</h1>
           <Badge 
             variant="outline" 
             className={`
@@ -145,39 +167,40 @@ const OrderDetail = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {order.items.map((item, index) => (
-                  <div key={index} className="py-4 first:pt-0 last:pb-0">
-                    <div className="flex gap-4">
-                      <div className="h-16 w-16 bg-muted rounded flex items-center justify-center">
-                        {item.product?.image_url ? (
-                          <img 
-                            src={item.product.image_url} 
-                            alt={item.product?.name || `Product #${item.product_id}`} 
-                            className="h-full w-full object-cover rounded"
-                          />
-                        ) : (
-                          <Package className="h-8 w-8 text-muted-foreground" />
-                        )}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-medium">
-                          {item.product?.name || `Product #${item.product_id}`}
-                        </h3>
-                        {item.product?.price && (
+                {order.order_items.map((item, index) => {
+                  const product = products[item.product_id];
+                  return (
+                    <div key={index} className="py-4 first:pt-0 last:pb-0">
+                      <div className="flex gap-4">
+                        <div className="h-16 w-16 bg-muted rounded flex items-center justify-center">
+                          {product?.image_url ? (
+                            <img 
+                              src={product.image_url} 
+                              alt={product?.name || `Product #${item.product_id}`} 
+                              className="h-full w-full object-cover rounded"
+                            />
+                          ) : (
+                            <Package className="h-8 w-8 text-muted-foreground" />
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-medium">
+                            {product?.name || `Product #${item.product_id}`}
+                          </h3>
                           <div className="flex justify-between">
                             <span className="text-sm text-muted-foreground">
-                              ${item.product.price.toFixed(2)} x {item.quantity}
+                              ${item.price?.toFixed(2) || "0.00"} x {item.quantity}
                             </span>
                             <span className="font-medium">
-                              ${(item.product.price * item.quantity).toFixed(2)}
+                              ${((item.price || 0) * item.quantity).toFixed(2)}
                             </span>
                           </div>
-                        )}
+                        </div>
                       </div>
+                      {index < order.order_items.length - 1 && <Separator className="mt-4" />}
                     </div>
-                    {index < order.items.length - 1 && <Separator className="mt-4" />}
-                  </div>
-                ))}
+                  );
+                })}
                 
                 <div className="mt-6 space-y-2">
                   <div className="flex justify-between">

@@ -146,10 +146,10 @@ const Orders = () => {
                       <div>
                         <h3 className="font-medium">Status: {order.status}</h3>
                         <p className="text-sm text-muted-foreground">
-                          {order.status === 'processing' && 'Your order is being processed.'}
-                          {order.status === 'shipped' && 'Your order is on the way!'}
-                          {order.status === 'delivered' && 'Your order has been delivered.'}
-                          {order.status === 'cancelled' && 'This order was cancelled.'}
+                          {order.status.toLowerCase() === 'processing' && 'Your order is being processed.'}
+                          {order.status.toLowerCase() === 'shipped' && 'Your order is on the way!'}
+                          {order.status.toLowerCase() === 'delivered' && 'Your order has been delivered.'}
+                          {order.status.toLowerCase() === 'cancelled' && 'This order was cancelled.'}
                         </p>
                       </div>
                     </div>
