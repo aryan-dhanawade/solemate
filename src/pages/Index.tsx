@@ -8,88 +8,39 @@ import ProductCard from '@/components/ProductCard';
 import { getCategories, getProducts } from '@/services/api';
 import { Product, Category } from '@/types';
 import { ArrowRight } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        // In a real app, you might have a separate endpoint for featured products
+        // Fetch products from API
         const productsData = await getProducts();
         setFeaturedProducts(productsData.slice(0, 4)); // Just take first 4 products as featured
         
+        // Fetch categories from API
         const categoriesData = await getCategories();
         setCategories(categoriesData);
       } catch (error) {
         console.error('Failed to fetch data:', error);
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Failed to load data from the server.",
+        });
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, []);
-
-  // For demo purposes, let's create placeholder data if API is not available
-  useEffect(() => {
-    if (!isLoading && featuredProducts.length === 0) {
-      // Create placeholder products if API returns empty
-      const placeholderProducts: Product[] = [
-        {
-          id: 1,
-          name: 'Air Max 90',
-          description: 'Classic style sneakers with maximum comfort and durability.',
-          price: 120.99,
-          stock_quantity: 50,
-          category_id: 1,
-          image_url: 'https://placehold.co/600x400?text=Air+Max+90'
-        },
-        {
-          id: 2,
-          name: 'Classic Leather Oxfords',
-          description: 'Timeless formal leather shoes for a professional look.',
-          price: 89.99,
-          stock_quantity: 35,
-          category_id: 2,
-          image_url: 'https://placehold.co/600x400?text=Leather+Oxfords'
-        },
-        {
-          id: 3,
-          name: 'Running Boost',
-          description: 'High-performance running shoes with responsive cushioning.',
-          price: 149.99,
-          stock_quantity: 20,
-          category_id: 3,
-          image_url: 'https://placehold.co/600x400?text=Running+Boost'
-        },
-        {
-          id: 4,
-          name: 'Casual Canvas Slip-ons',
-          description: 'Comfortable everyday canvas shoes for casual outings.',
-          price: 49.99,
-          stock_quantity: 60,
-          category_id: 4,
-          image_url: 'https://placehold.co/600x400?text=Canvas+Slipons'
-        }
-      ];
-      setFeaturedProducts(placeholderProducts);
-    }
-
-    if (!isLoading && categories.length === 0) {
-      // Create placeholder categories if API returns empty
-      const placeholderCategories: Category[] = [
-        { id: 1, name: 'Sneakers' },
-        { id: 2, name: 'Formal' },
-        { id: 3, name: 'Sports' },
-        { id: 4, name: 'Casual' }
-      ];
-      setCategories(placeholderCategories);
-    }
-  }, [isLoading, featuredProducts.length, categories.length]);
+  }, [toast]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -135,9 +86,30 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            {isLoading ? (
+              // Loading skeletons
+              Array(4).fill(0).map((_, index) => (
+                <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+                  <div className="h-60 bg-gray-200 animate-pulse"></div>
+                  <div className="p-4">
+                    <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded animate-pulse w-2/3 mb-4"></div>
+                    <div className="flex justify-between items-center">
+                      <div className="h-6 bg-gray-200 rounded animate-pulse w-1/4"></div>
+                      <div className="h-8 bg-gray-200 rounded animate-pulse w-1/3"></div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : featuredProducts.length > 0 ? (
+              featuredProducts.map(product => (
+                <ProductCard key={product.product_id} product={product} />
+              ))
+            ) : (
+              <div className="col-span-4 text-center py-8">
+                <p className="text-gray-500">No products available at the moment.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -148,24 +120,35 @@ const Index = () => {
           <h2 className="text-3xl font-bold mb-8 text-center">Shop by Category</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map(category => (
-              <Link 
-                key={category.id} 
-                to={`/products?category=${category.id}`}
-                className="group relative h-64 overflow-hidden rounded-lg"
-              >
-                <img 
-                  src={`https://placehold.co/600x400?text=${category.name}`} 
-                  alt={category.name} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-                <div className="absolute bottom-0 left-0 p-6">
-                  <h3 className="text-white text-xl font-bold">{category.name}</h3>
-                  <p className="text-white/80 group-hover:underline mt-1">Shop Now</p>
-                </div>
-              </Link>
-            ))}
+            {isLoading ? (
+              // Loading skeletons
+              Array(4).fill(0).map((_, index) => (
+                <div key={index} className="relative h-64 bg-gray-200 rounded-lg animate-pulse"></div>
+              ))
+            ) : categories.length > 0 ? (
+              categories.map(category => (
+                <Link 
+                  key={category.category_id} 
+                  to={`/products?category=${category.category_id}`}
+                  className="group relative h-64 overflow-hidden rounded-lg"
+                >
+                  <img 
+                    src={`https://placehold.co/600x400?text=${category.name}`} 
+                    alt={category.name} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                  <div className="absolute bottom-0 left-0 p-6">
+                    <h3 className="text-white text-xl font-bold">{category.name}</h3>
+                    <p className="text-white/80 group-hover:underline mt-1">Shop Now</p>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <div className="col-span-4 text-center py-8">
+                <p className="text-gray-500">No categories available at the moment.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
