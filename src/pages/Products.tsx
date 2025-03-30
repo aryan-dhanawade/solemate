@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -216,14 +217,14 @@ const Products = () => {
                       <div className="space-y-2">
                         <Label>Categories</Label>
                         <Select 
-                          value={selectedCategory || ''} 
+                          value={selectedCategory || undefined} 
                           onValueChange={handleCategoryChange}
                         >
                           <SelectTrigger>
                             <SelectValue placeholder="All Categories" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="">All Categories</SelectItem>
+                            <SelectItem value="all">All Categories</SelectItem>
                             {categories.map(category => (
                               <SelectItem 
                                 key={category.id} 
@@ -374,14 +375,14 @@ const Products = () => {
                 <div className="space-y-2">
                   <Label>Categories</Label>
                   <Select 
-                    value={selectedCategory || ''} 
+                    value={selectedCategory || undefined} 
                     onValueChange={handleCategoryChange}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="All Categories" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Categories</SelectItem>
+                      <SelectItem value="all">All Categories</SelectItem>
                       {categories.map(category => (
                         <SelectItem 
                           key={category.id} 
