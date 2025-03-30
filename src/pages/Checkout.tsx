@@ -157,7 +157,7 @@ const Checkout = () => {
       // Prepare checkout data
       const checkoutData = {
         items: items.map(item => ({
-          product_id: item.product.id,
+          product_id: item.product.product_id,
           quantity: item.quantity
         }))
       };
@@ -167,7 +167,7 @@ const Checkout = () => {
 
       // Process payment
       const paymentData = {
-        order_id: orderResponse.id,
+        order_id: orderResponse.order_id,
         payment_method: paymentMethod,
         amount: totalPrice
       };
@@ -177,14 +177,14 @@ const Checkout = () => {
       // Success
       toast({
         title: "Order placed successfully!",
-        description: `Your order #${orderResponse.id} has been confirmed.`,
+        description: `Your order #${orderResponse.order_id} has been confirmed.`,
       });
 
       // Clear cart
       clearCart();
 
       // Redirect to order confirmation
-      navigate(`/orders/${orderResponse.id}`);
+      navigate(`/orders/${orderResponse.order_id}`);
     } catch (error) {
       console.error('Checkout error:', error);
       toast({
@@ -619,7 +619,7 @@ const Checkout = () => {
                     {/* Items */}
                     <div className="space-y-2">
                       {items.map((item) => (
-                        <div key={item.product.id} className="flex justify-between">
+                        <div key={item.product.product_id} className="flex justify-between">
                           <span className="text-sm text-muted-foreground">
                             {item.product.name} × {item.quantity}
                           </span>

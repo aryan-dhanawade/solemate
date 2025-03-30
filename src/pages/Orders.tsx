@@ -127,11 +127,11 @@ const Orders = () => {
         ) : (
           <div className="space-y-6">
             {orders.map((order) => (
-              <Card key={order.id}>
+              <Card key={order.order_id}>
                 <CardHeader className="pb-4">
                   <div className="flex flex-wrap justify-between items-start gap-4">
                     <div>
-                      <CardTitle className="text-lg">Order #{order.id}</CardTitle>
+                      <CardTitle className="text-lg">Order #{order.order_id}</CardTitle>
                       <CardDescription>
                         Placed on {format(new Date(order.order_date), 'MMMM d, yyyy')}
                       </CardDescription>
@@ -161,10 +161,6 @@ const Orders = () => {
                       <h3 className="font-medium mb-2">Order Summary</h3>
                       <div className="space-y-1">
                         <div className="flex justify-between text-sm">
-                          <span>Items:</span>
-                          <span>{order.items.length}</span>
-                        </div>
-                        <div className="flex justify-between text-sm">
                           <span>Total Amount:</span>
                           <span className="font-medium">${order.total_amount.toFixed(2)}</span>
                         </div>
@@ -174,7 +170,7 @@ const Orders = () => {
                   
                   <div className="mt-6 flex justify-end">
                     <Button variant="outline" size="sm" asChild>
-                      <Link to={`/orders/${order.id}`}>
+                      <Link to={`/orders/${order.order_id}`}>
                         <Eye className="mr-2 h-4 w-4" />
                         View Details
                       </Link>

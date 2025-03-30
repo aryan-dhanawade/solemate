@@ -2,7 +2,7 @@
 import { AuthResponse, Category, CheckoutData, LoginCredentials, Order, PaymentData, Product, RegisterData, User } from "@/types";
 
 // Changed from example.com to the actual server
-const API_URL = 'http://localhost:5000'; // Adjust this to your actual Flask API URL
+const API_URL = 'http://localhost:5000/api'; // Adjust this to your actual Flask API URL
 
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
@@ -62,28 +62,28 @@ export async function getProfile(): Promise<User> {
 
 // Category endpoints
 export async function getCategories(): Promise<Category[]> {
-  const response = await fetch(`${API_URL}/category/categories`);
+  const response = await fetch(`${API_URL}/categories`);
   return handleResponse<Category[]>(response);
 }
 
 // Product endpoints
 export async function getProducts(categoryId?: number): Promise<Product[]> {
   const url = categoryId 
-    ? `${API_URL}/product/products?category_id=${categoryId}` 
-    : `${API_URL}/product/products`;
+    ? `${API_URL}/products?category_id=${categoryId}` 
+    : `${API_URL}/products`;
     
   const response = await fetch(url);
   return handleResponse<Product[]>(response);
 }
 
 export async function getProductById(productId: number): Promise<Product> {
-  const response = await fetch(`${API_URL}/product/products/${productId}`);
+  const response = await fetch(`${API_URL}/products/${productId}`);
   return handleResponse<Product>(response);
 }
 
 // Order endpoints
 export async function checkout(data: CheckoutData): Promise<Order> {
-  const response = await fetchWithAuth('/order/checkout', {
+  const response = await fetchWithAuth('/checkout', {
     method: 'POST',
     body: JSON.stringify(data),
   });
@@ -92,18 +92,18 @@ export async function checkout(data: CheckoutData): Promise<Order> {
 }
 
 export async function getOrders(): Promise<Order[]> {
-  const response = await fetchWithAuth('/order/orders');
+  const response = await fetchWithAuth('/orders');
   return handleResponse<Order[]>(response);
 }
 
 export async function getOrderById(orderId: number): Promise<Order> {
-  const response = await fetchWithAuth(`/order/orders/${orderId}`);
+  const response = await fetchWithAuth(`/orders/${orderId}`);
   return handleResponse<Order>(response);
 }
 
 // Payment endpoints
 export async function processPayment(paymentData: PaymentData) {
-  const response = await fetchWithAuth('/payment/payment', {
+  const response = await fetchWithAuth('/payment', {
     method: 'POST',
     body: JSON.stringify(paymentData),
   });
@@ -112,6 +112,6 @@ export async function processPayment(paymentData: PaymentData) {
 }
 
 export async function getPaymentByOrderId(orderId: number) {
-  const response = await fetchWithAuth(`/payment/payment/${orderId}`);
+  const response = await fetchWithAuth(`/payment/${orderId}`);
   return handleResponse(response);
 }

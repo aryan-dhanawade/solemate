@@ -87,10 +87,10 @@ const Products = () => {
     }));
     
     const placeholderCategories: Category[] = [
-      { id: 1, name: 'Sneakers' },
-      { id: 2, name: 'Formal' },
-      { id: 3, name: 'Sports' },
-      { id: 4, name: 'Casual' }
+      { category_id: 1, name: 'Sneakers' },
+      { category_id: 2, name: 'Formal' },
+      { category_id: 3, name: 'Sports' },
+      { category_id: 4, name: 'Casual' }
     ];
     
     setProducts(placeholderProducts);
@@ -227,8 +227,8 @@ const Products = () => {
                             <SelectItem value="all">All Categories</SelectItem>
                             {categories.map(category => (
                               <SelectItem 
-                                key={category.id} 
-                                value={category.id.toString()}
+                                key={category.category_id} 
+                                value={category.category_id.toString()}
                               >
                                 {category.name}
                               </SelectItem>
@@ -385,8 +385,8 @@ const Products = () => {
                       <SelectItem value="all">All Categories</SelectItem>
                       {categories.map(category => (
                         <SelectItem 
-                          key={category.id} 
-                          value={category.id.toString()}
+                          key={category.category_id} 
+                          value={category.category_id.toString()}
                         >
                           {category.name}
                         </SelectItem>
@@ -472,7 +472,7 @@ const Products = () => {
               ) : filteredProducts.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredProducts.map(product => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard key={product.product_id} product={product} />
                   ))}
                 </div>
               ) : (

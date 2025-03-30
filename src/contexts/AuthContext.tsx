@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setIsLoading(true);
       const response = await login({ email, password });
-      localStorage.setItem('token', response.token);
+      localStorage.setItem('token', response.access_token);
       setUser(response.user);
       toast({
         title: "Login successful",
