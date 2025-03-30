@@ -65,7 +65,7 @@ const Products = () => {
       } catch (error) {
         console.error('Failed to fetch data:', error);
         // Create placeholder data if API call fails
-        createPlaceholderData();
+        // createPlaceholderData();
       } finally {
         setIsLoading(false);
       }
