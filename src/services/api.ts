@@ -1,5 +1,5 @@
 
-import { AuthResponse, Category, CheckoutData, LoginCredentials, Order, PaymentData, Product, RegisterData, User } from "@/types";
+import { AuthResponse, Category, CheckoutData, LoginCredentials, Order, PaymentData, Product, RegisterData, User, ContactUs } from "@/types";
 
 // Changed from example.com to the actual server
 const API_URL = 'http://192.168.1.6:5000/api'; // Adjust this to your actual Flask API URL
@@ -115,3 +115,16 @@ export async function getPaymentByOrderId(orderId: number) {
   const response = await fetchWithAuth(`/payment/${orderId}`);
   return handleResponse(response);
 }
+
+export async function contactUs(data: ContactUs): Promise<any> {
+  const response = await fetch(`${API_URL}/contact`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  
+  return handleResponse(response);
+}
+

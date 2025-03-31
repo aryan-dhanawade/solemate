@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import { contactUs } from '@/services/api';
 
 const Contact = () => {
   const [name, setName] = useState('');
@@ -19,26 +20,36 @@ const Contact = () => {
   
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+  
+    try {
+      await contactUs({
+        name,
+        email,
+        subject,
+        message,
+      });
       toast({
         title: "Message Sent",
         description: "Thank you for contacting us. We'll get back to you soon!",
       });
-      
-      // Reset form
+      // Reset the form fields
       setName('');
       setEmail('');
       setSubject('');
       setMessage('');
+    } catch (error: any) {
+      toast({
+        title: "Submission Error",
+        description: error.message || "Something went wrong. Please try again later.",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
-
+  
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />

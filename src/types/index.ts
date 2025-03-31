@@ -74,3 +74,11 @@ export interface PaymentData {
   payment_method: string;
   amount: number;
 }
+
+export interface ContactUs{
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  
+}
