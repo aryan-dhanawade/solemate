@@ -121,6 +121,18 @@
   color: #222222;
 }
 
+/* Card-specific overrides to ensure text is visible */
+.card, 
+.bg-card {
+  color: var(--card-foreground);
+}
+
+/* Card with white background needs dark text */
+.bg-white.card,
+.card.bg-white {
+  color: #333333;
+}
+
 .product-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
