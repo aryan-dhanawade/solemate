@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getProductById } from '@/services/api';
@@ -49,7 +48,7 @@ const ProductDetail = () => {
         
         // Create placeholder product if API fails
         const placeholderProduct: Product = {
-          id: parseInt(id),
+          product_id: parseInt(id),
           name: `Product ${id}`,
           description: 'This is a premium quality product designed for comfort and durability. Made from high-quality materials, this product offers excellent value for money and will serve you well for years to come.',
           price: 99.99,

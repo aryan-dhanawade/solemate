@@ -67,14 +67,14 @@ const Cart = () => {
       
       <main className="flex-1 py-24 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
+          <h1 className="text-3xl font-bold mb-8 text-gray-900">Shopping Cart</h1>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Cart Items */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="p-6">
-                  <div className="hidden md:grid grid-cols-12 gap-4 mb-4 text-sm font-semibold text-muted-foreground">
+                  <div className="hidden md:grid grid-cols-12 gap-4 mb-4 text-sm font-semibold text-gray-700">
                     <div className="col-span-6">Product</div>
                     <div className="col-span-2 text-center">Price</div>
                     <div className="col-span-2 text-center">Quantity</div>
@@ -96,7 +96,7 @@ const Cart = () => {
                             />
                           </div>
                           <div>
-                            <h3 className="font-semibold">
+                            <h3 className="font-semibold text-gray-900">
                               <Link to={`/products/${item.product.product_id}`} className="hover:text-primary">
                                 {item.product.name}
                               </Link>
@@ -104,7 +104,7 @@ const Cart = () => {
                             <Button 
                               variant="ghost" 
                               size="sm" 
-                              className="text-muted-foreground hover:text-destructive p-0 h-auto text-xs"
+                              className="text-gray-500 hover:text-destructive p-0 h-auto text-xs"
                               onClick={() => handleRemove(item.product.product_id)}
                             >
                               <X className="h-3 w-3 mr-1" />
@@ -115,13 +115,13 @@ const Cart = () => {
                         
                         {/* Price */}
                         <div className="md:col-span-2 md:text-center flex justify-between items-center md:block">
-                          <span className="text-sm font-semibold md:hidden">Price:</span>
-                          <span>${item.product.price.toFixed(2)}</span>
+                          <span className="text-sm font-semibold md:hidden text-gray-700">Price:</span>
+                          <span className="text-gray-900">${item.product.price.toFixed(2)}</span>
                         </div>
                         
                         {/* Quantity */}
                         <div className="md:col-span-2 md:text-center flex justify-between items-center md:block">
-                          <span className="text-sm font-semibold md:hidden">Quantity:</span>
+                          <span className="text-sm font-semibold md:hidden text-gray-700">Quantity:</span>
                           <div className="flex items-center justify-center">
                             <Button 
                               variant="outline" 
@@ -133,7 +133,7 @@ const Cart = () => {
                               <Minus className="h-3 w-3" />
                             </Button>
                             
-                            <span className="w-10 text-center">{item.quantity}</span>
+                            <span className="w-10 text-center text-gray-900">{item.quantity}</span>
                             
                             <Button 
                               variant="outline" 
@@ -149,8 +149,8 @@ const Cart = () => {
                         
                         {/* Total */}
                         <div className="md:col-span-2 md:text-center flex justify-between items-center md:block">
-                          <span className="text-sm font-semibold md:hidden">Total:</span>
-                          <span className="font-semibold">${(item.product.price * item.quantity).toFixed(2)}</span>
+                          <span className="text-sm font-semibold md:hidden text-gray-700">Total:</span>
+                          <span className="font-semibold text-gray-900">${(item.product.price * item.quantity).toFixed(2)}</span>
                         </div>
                       </div>
                       
@@ -175,24 +175,24 @@ const Cart = () => {
             {/* Order Summary */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
-                <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+                <h2 className="text-xl font-bold mb-4 text-gray-900">Order Summary</h2>
                 
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Subtotal ({totalItems} items)</span>
-                    <span>${totalPrice.toFixed(2)}</span>
+                    <span className="text-gray-700">Subtotal ({totalItems} items)</span>
+                    <span className="text-gray-900">${totalPrice.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Shipping</span>
-                    <span>Free</span>
+                    <span className="text-gray-700">Shipping</span>
+                    <span className="text-gray-900">Free</span>
                   </div>
                 </div>
                 
                 <Separator className="my-4" />
                 
                 <div className="flex justify-between font-semibold text-lg mb-6">
-                  <span>Total</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span className="text-gray-900">Total</span>
+                  <span className="text-gray-900">${totalPrice.toFixed(2)}</span>
                 </div>
                 
                 <Button 
@@ -205,9 +205,9 @@ const Cart = () => {
                 </Button>
                 
                 <div className="mt-6">
-                  <h3 className="font-semibold mb-2">Have a promo code?</h3>
+                  <h3 className="font-semibold mb-2 text-gray-900">Have a promo code?</h3>
                   <div className="flex gap-2">
-                    <Input placeholder="Enter code" />
+                    <Input placeholder="Enter code" className="text-gray-900" />
                     <Button variant="outline">Apply</Button>
                   </div>
                 </div>
