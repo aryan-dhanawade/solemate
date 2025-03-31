@@ -195,7 +195,7 @@ const Products = () => {
             {/* Mobile Filters */}
             <div className="w-full md:hidden mb-4">
               <div className="flex justify-between items-center mb-4">
-                <h1 className="text-3xl font-bold text-gray-900">Products</h1>
+                <h1 className="text-3xl font-bold">Products</h1>
                 
                 <Sheet>
                   <SheetTrigger asChild>
@@ -216,7 +216,7 @@ const Products = () => {
                     <div className="py-4 space-y-6">
                       {/* Categories */}
                       <div className="space-y-2">
-                        <Label className="text-gray-900">Categories</Label>
+                        <Label>Categories</Label>
                         <Select 
                           value={selectedCategory || undefined} 
                           onValueChange={handleCategoryChange}
@@ -241,8 +241,8 @@ const Products = () => {
                       {/* Price Range */}
                       <div className="space-y-2">
                         <div className="flex justify-between">
-                          <Label className="text-gray-900">Price Range</Label>
-                          <span className="text-sm text-gray-700">
+                          <Label>Price Range</Label>
+                          <span className="text-sm text-gray-500">
                             ${priceRange[0]} - ${priceRange[1]}
                           </span>
                         </div>
@@ -266,7 +266,7 @@ const Products = () => {
                             setInStockOnly(checked as boolean)
                           }
                         />
-                        <Label htmlFor="in-stock-mobile" className="text-gray-900">In Stock Only</Label>
+                        <Label htmlFor="in-stock-mobile">In Stock Only</Label>
                       </div>
                     </div>
                     
@@ -293,7 +293,7 @@ const Products = () => {
                     placeholder="Search products..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 text-gray-900"
+                    className="pl-10"
                   />
                   <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                     <Search className="h-4 w-4" />
@@ -312,7 +312,7 @@ const Products = () => {
                 </form>
                 
                 <div>
-                  <Label htmlFor="mobile-sort" className="text-gray-900">Sort By</Label>
+                  <Label htmlFor="mobile-sort">Sort By</Label>
                   <Select value={sortOption} onValueChange={setSortOption}>
                     <SelectTrigger id="mobile-sort">
                       <SelectValue placeholder="Featured" />
@@ -333,7 +333,7 @@ const Products = () => {
             <div className="hidden md:block w-64 sticky top-24 bg-white rounded-lg shadow-sm p-6">
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-lg font-semibold mb-4 text-gray-900">Filters</h2>
+                  <h2 className="text-lg font-semibold mb-4">Filters</h2>
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -346,14 +346,14 @@ const Products = () => {
                 
                 {/* Search Filter */}
                 <div className="space-y-2">
-                  <Label className="text-gray-900">Search</Label>
+                  <Label>Search</Label>
                   <form onSubmit={handleSearch} className="relative">
                     <Input
                       type="text"
                       placeholder="Search products..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10 text-gray-900"
+                      className="pl-10"
                     />
                     <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                       <Search className="h-4 w-4" />
@@ -374,7 +374,7 @@ const Products = () => {
                 
                 {/* Categories */}
                 <div className="space-y-2">
-                  <Label className="text-gray-900">Categories</Label>
+                  <Label>Categories</Label>
                   <Select 
                     value={selectedCategory || undefined} 
                     onValueChange={handleCategoryChange}
@@ -399,8 +399,8 @@ const Products = () => {
                 {/* Price Range */}
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <Label className="text-gray-900">Price Range</Label>
-                    <span className="text-sm text-gray-700">
+                    <Label>Price Range</Label>
+                    <span className="text-sm text-gray-500">
                       ${priceRange[0]} - ${priceRange[1]}
                     </span>
                   </div>
@@ -424,7 +424,7 @@ const Products = () => {
                       setInStockOnly(checked as boolean)
                     }
                   />
-                  <Label htmlFor="in-stock" className="text-gray-900">In Stock Only</Label>
+                  <Label htmlFor="in-stock">In Stock Only</Label>
                 </div>
               </div>
             </div>
@@ -433,10 +433,10 @@ const Products = () => {
             <div className="flex-1">
               {/* Desktop Header */}
               <div className="hidden md:flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold text-gray-900">Products</h1>
+                <h1 className="text-3xl font-bold">Products</h1>
                 
                 <div className="flex items-center gap-2">
-                  <Label htmlFor="sort-by" className="text-sm whitespace-nowrap text-gray-900">
+                  <Label htmlFor="sort-by" className="text-sm whitespace-nowrap">
                     Sort by:
                   </Label>
                   <Select value={sortOption} onValueChange={setSortOption}>
@@ -456,7 +456,7 @@ const Products = () => {
               
               {/* Results Count */}
               <div className="mb-6">
-                <p className="text-gray-700">
+                <p className="text-muted-foreground">
                   Showing {filteredProducts.length} results
                 </p>
               </div>
@@ -478,8 +478,8 @@ const Products = () => {
                 </div>
               ) : (
                 <div className="text-center py-12">
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900">No products found</h3>
-                  <p className="text-gray-700 mb-6">
+                  <h3 className="text-lg font-semibold mb-2">No products found</h3>
+                  <p className="text-muted-foreground mb-6">
                     Try adjusting your filters or search criteria
                   </p>
                   <Button onClick={resetFilters}>

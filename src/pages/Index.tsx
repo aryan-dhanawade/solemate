@@ -96,18 +96,18 @@ const Index = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 bg-muted text-foreground">
+      <section className="pt-32 pb-16 px-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
         <div className="container mx-auto flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-10 md:mb-0">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Step Into Style & Comfort</h1>
-            <p className="text-xl mb-8 text-muted-foreground">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Step Into Comfort & Style</h1>
+            <p className="text-xl mb-8 text-blue-100">
               Discover our premium collection of shoes for every occasion, from casual to formal.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button size="lg" asChild>
-                <Link to="/products">Shop Now</Link>
+                <Link to="/products" >Shop Now</Link>
               </Button>
-              <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground" asChild>
+              <Button variant="outline" size="lg" className="border-white text-blue-900 hover:bg-blue-600 hover:text-white hover:border-blue-600" asChild>
                 <Link to="/categories">Browse Categories</Link>
               </Button>
             </div>
@@ -123,11 +123,11 @@ const Index = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 px-4 bg-background">
+      <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-foreground">Featured Products</h2>
-            <Button variant="ghost" className="text-accent hover:text-accent-foreground" asChild>
+            <h2 className="text-3xl font-bold">Featured Products</h2>
+            <Button variant="ghost" asChild>
               <Link to="/products" className="flex items-center">
                 View All <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -143,9 +143,9 @@ const Index = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-16 px-4 bg-muted">
+      <section className="py-16 px-4">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center text-foreground">Shop by Category</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">Shop by Category</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map(category => (
@@ -159,10 +159,10 @@ const Index = () => {
                   alt={category.name} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-70"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
                 <div className="absolute bottom-0 left-0 p-6">
-                  <h3 className="text-foreground text-xl font-bold">{category.name}</h3>
-                  <p className="text-primary group-hover:underline mt-1">Shop Now</p>
+                  <h3 className="text-white text-xl font-bold">{category.name}</h3>
+                  <p className="text-white/80 group-hover:underline mt-1">Shop Now</p>
                 </div>
               </Link>
             ))}
@@ -171,58 +171,58 @@ const Index = () => {
       </section>
 
       {/* Benefits/Features Section */}
-      <section className="py-16 px-4 bg-background">
+      <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center text-foreground">Why Shop With Us</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">Why Shop With Us</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-card p-6 rounded-lg shadow-md text-center">
-              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-foreground">Premium Quality</h3>
-              <p className="text-muted-foreground">We offer only the highest quality shoes made from premium materials for lasting comfort.</p>
+              <h3 className="text-xl font-semibold mb-3">Premium Quality</h3>
+              <p className="text-gray-600">We offer only the highest quality shoes made from premium materials for lasting comfort.</p>
             </div>
             
-            <div className="bg-card p-6 rounded-lg shadow-md text-center">
-              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-foreground">Fast Delivery</h3>
-              <p className="text-muted-foreground">Enjoy quick shipping and reliable delivery on all your orders with real-time tracking.</p>
+              <h3 className="text-xl font-semibold mb-3">Fast Delivery</h3>
+              <p className="text-gray-600">Enjoy quick shipping and reliable delivery on all your orders with real-time tracking.</p>
             </div>
             
-            <div className="bg-card p-6 rounded-lg shadow-md text-center">
-              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-foreground">30-Day Returns</h3>
-              <p className="text-muted-foreground">Not satisfied? Return your purchase within 30 days for a full refund, no questions asked.</p>
+              <h3 className="text-xl font-semibold mb-3">30-Day Returns</h3>
+              <p className="text-gray-600">Not satisfied? Return your purchase within 30 days for a full refund, no questions asked.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Newsletter/Subscription */}
-      <section className="py-16 px-4 bg-primary">
+      <section className="py-16 px-4 bg-primary text-white">
         <div className="container mx-auto">
           <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4 text-primary-foreground">Stay in the Loop</h2>
-            <p className="mb-6 text-primary-foreground/90">Subscribe to our newsletter for exclusive offers, new arrivals, and style tips.</p>
+            <h2 className="text-3xl font-bold mb-4">Stay in the Loop</h2>
+            <p className="mb-6">Subscribe to our newsletter for exclusive offers, new arrivals, and style tips.</p>
             
             <form className="flex flex-col sm:flex-row gap-3">
               <input 
                 type="email" 
                 placeholder="Your email address" 
-                className="px-4 py-3 rounded-md flex-1 text-background bg-primary-foreground"
+                className="px-4 py-3 rounded-md flex-1 text-gray-900"
               />
-              <Button className="whitespace-nowrap bg-accent text-accent-foreground hover:bg-accent/90">
+              <Button className="whitespace-nowrap bg-white text-primary hover:bg-gray-100">
                 Subscribe
               </Button>
             </form>
