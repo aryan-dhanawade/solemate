@@ -78,7 +78,7 @@ const Categories = () => {
           {isLoading 
             ? renderSkeletons() 
             : categories.map((category) => (
-                <Card key={category.id} className="flex flex-col h-full">
+                <Card key={category.category_id} className="flex flex-col h-full">
                   <CardHeader>
                     <CardTitle>{category.name}</CardTitle>
                     <CardDescription>Explore our collection of {category.name.toLowerCase()}</CardDescription>
@@ -88,7 +88,7 @@ const Categories = () => {
                   </CardContent>
                   <CardFooter>
                     <Button asChild className="w-full">
-                      <Link to={`/products?category=${category.id}`}>View Products</Link>
+                      <Link to={`/products?category=${category.category_id}`}>View Products</Link>
                     </Button>
                   </CardFooter>
                 </Card>

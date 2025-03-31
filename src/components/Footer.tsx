@@ -81,12 +81,12 @@ const Footer = () => {
               </li>
               <li className="flex items-start">
                 <Phone className="mr-2 h-5 w-5 text-gray-400" />
-                <span className="text-gray-400">+1 (888) 555-1234</span>
+                <span className="text-gray-400">+91 (123) 456-7890</span>
               </li>
               <li className="text-gray-400">
-                123 Shoe Lane,<br />
-                Fashion District,<br />
-                New York, NY 10001
+                123 XYZ Street,<br />
+                ABC District,<br />
+                PQR City, PQ 123456
               </li>
             </ul>
           </div>

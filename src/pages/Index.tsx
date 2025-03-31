@@ -40,7 +40,7 @@ const Index = () => {
       // Create placeholder products if API returns empty
       const placeholderProducts: Product[] = [
         {
-          id: 1,
+          product_id: 1,
           name: 'Air Max 90',
           description: 'Classic style sneakers with maximum comfort and durability.',
           price: 120.99,
@@ -49,7 +49,7 @@ const Index = () => {
           image_url: 'https://placehold.co/600x400?text=Air+Max+90'
         },
         {
-          id: 2,
+          product_id: 2,
           name: 'Classic Leather Oxfords',
           description: 'Timeless formal leather shoes for a professional look.',
           price: 89.99,
@@ -58,7 +58,7 @@ const Index = () => {
           image_url: 'https://placehold.co/600x400?text=Leather+Oxfords'
         },
         {
-          id: 3,
+          product_id: 3,
           name: 'Running Boost',
           description: 'High-performance running shoes with responsive cushioning.',
           price: 149.99,
@@ -67,7 +67,7 @@ const Index = () => {
           image_url: 'https://placehold.co/600x400?text=Running+Boost'
         },
         {
-          id: 4,
+          product_id: 4,
           name: 'Casual Canvas Slip-ons',
           description: 'Comfortable everyday canvas shoes for casual outings.',
           price: 49.99,
@@ -82,10 +82,10 @@ const Index = () => {
     if (!isLoading && categories.length === 0) {
       // Create placeholder categories if API returns empty
       const placeholderCategories: Category[] = [
-        { id: 1, name: 'Sneakers' },
-        { id: 2, name: 'Formal' },
-        { id: 3, name: 'Sports' },
-        { id: 4, name: 'Casual' }
+        { category_id: 1, name: 'Sneakers' },
+        { category_id: 2, name: 'Formal' },
+        { category_id: 3, name: 'Sports' },
+        { category_id: 4, name: 'Casual' }
       ];
       setCategories(placeholderCategories);
     }
@@ -105,9 +105,9 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <Button size="lg" asChild>
-                <Link to="/products">Shop Now</Link>
+                <Link to="/products" >Shop Now</Link>
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-900" asChild>
+              <Button variant="outline" size="lg" className="border-white text-blue-900 hover:bg-blue-600 hover:text-white hover:border-blue-600" asChild>
                 <Link to="/categories">Browse Categories</Link>
               </Button>
             </div>
@@ -136,7 +136,7 @@ const Index = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.product_id} product={product} />
             ))}
           </div>
         </div>
@@ -150,8 +150,8 @@ const Index = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map(category => (
               <Link 
-                key={category.id} 
-                to={`/products?category=${category.id}`}
+                key={category.category_id} 
+                to={`/products?category=${category.category_id}`}
                 className="group relative h-64 overflow-hidden rounded-lg"
               >
                 <img 

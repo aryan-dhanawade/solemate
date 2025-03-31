@@ -39,7 +39,7 @@ const Products = () => {
   
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>("all");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   const [inStockOnly, setInStockOnly] = useState(false);
   const [sortOption, setSortOption] = useState('featured');
@@ -53,6 +53,7 @@ const Products = () => {
         const categoryParam = searchParams.get('category');
         if (categoryParam) {
           setSelectedCategory(categoryParam);
+          console.log(categoryParam)
         }
         
         const [productsData, categoriesData] = await Promise.all([
@@ -77,7 +78,7 @@ const Products = () => {
   // Create placeholder data if API returns empty
   const createPlaceholderData = () => {
     const placeholderProducts: Product[] = Array.from({ length: 12 }, (_, i) => ({
-      id: i + 1,
+      product_id: i + 1,
       name: `Product ${i + 1}`,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       price: 50 + Math.floor(Math.random() * 200),
@@ -112,7 +113,7 @@ const Products = () => {
     }
     
     // Filter by category
-    if (selectedCategory) {
+    if (selectedCategory != "all") {
       result = result.filter(
         product => product.category_id === parseInt(selectedCategory)
       );
@@ -159,7 +160,7 @@ const Products = () => {
 
   const resetFilters = () => {
     setSearchQuery('');
-    setSelectedCategory(null);
+    setSelectedCategory("all");
     setPriceRange([0, 1000]);
     setInStockOnly(false);
     setSortOption('featured');

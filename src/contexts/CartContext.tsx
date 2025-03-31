@@ -38,7 +38,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = (product: Product, quantity = 1) => {
     setItems(prevItems => {
-      const existingItem = prevItems.find(item => item.product.id === product.id);
+      const existingItem = prevItems.find(item => item.product.product_id === product.product_id);
       
       if (existingItem) {
         // If product already in cart, update quantity
@@ -54,7 +54,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         }
         
         const updatedItems = prevItems.map(item => 
-          item.product.id === product.id 
+          item.product.product_id === product.product_id 
             ? { ...item, quantity: newQuantity } 
             : item
         );
@@ -88,7 +88,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const removeFromCart = (productId: number) => {
     setItems(prevItems => {
-      const itemToRemove = prevItems.find(item => item.product.id === productId);
+      const itemToRemove = prevItems.find(item => item.product.product_id === productId);
       
       if (itemToRemove) {
         toast({
@@ -97,7 +97,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         });
       }
       
-      return prevItems.filter(item => item.product.id !== productId);
+      return prevItems.filter(item => item.product.product_id !== productId);
     });
   };
 
@@ -108,7 +108,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
     
     setItems(prevItems => {
-      const item = prevItems.find(item => item.product.id === productId);
+      const item = prevItems.find(item => item.product.product_id === productId);
       
       if (!item) return prevItems;
       
@@ -122,7 +122,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       }
       
       return prevItems.map(item => 
-        item.product.id === productId 
+        item.product.product_id === productId 
           ? { ...item, quantity } 
           : item
       );

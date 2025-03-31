@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setIsLoading(true);
       const response = await register({ name, email, password, phone, address });
-      localStorage.setItem('token', response.token);
+      localStorage.setItem('token', response.access_token);
       setUser(response.user);
       toast({
         title: "Registration successful",

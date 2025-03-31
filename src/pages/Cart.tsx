@@ -84,7 +84,7 @@ const Cart = () => {
                   <Separator className="mb-6" />
                   
                   {items.map((item) => (
-                    <div key={item.product.id} className="mb-6">
+                    <div key={item.product.product_id} className="mb-6">
                       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
                         {/* Product */}
                         <div className="col-span-6 flex gap-4">
@@ -97,7 +97,7 @@ const Cart = () => {
                           </div>
                           <div>
                             <h3 className="font-semibold">
-                              <Link to={`/products/${item.product.id}`} className="hover:text-primary">
+                              <Link to={`/products/${item.product.product_id}`} className="hover:text-primary">
                                 {item.product.name}
                               </Link>
                             </h3>
@@ -105,7 +105,7 @@ const Cart = () => {
                               variant="ghost" 
                               size="sm" 
                               className="text-muted-foreground hover:text-destructive p-0 h-auto text-xs"
-                              onClick={() => handleRemove(item.product.id)}
+                              onClick={() => handleRemove(item.product.product_id)}
                             >
                               <X className="h-3 w-3 mr-1" />
                               Remove
@@ -127,7 +127,7 @@ const Cart = () => {
                               variant="outline" 
                               size="icon" 
                               className="h-7 w-7" 
-                              onClick={() => handleQuantityChange(item.product.id, item.quantity - 1)}
+                              onClick={() => handleQuantityChange(item.product.product_id, item.quantity - 1)}
                               disabled={item.quantity <= 1}
                             >
                               <Minus className="h-3 w-3" />
@@ -139,7 +139,7 @@ const Cart = () => {
                               variant="outline" 
                               size="icon" 
                               className="h-7 w-7" 
-                              onClick={() => handleQuantityChange(item.product.id, item.quantity + 1)}
+                              onClick={() => handleQuantityChange(item.product.product_id, item.quantity + 1)}
                               disabled={item.quantity >= item.product.stock_quantity}
                             >
                               <Plus className="h-3 w-3" />
