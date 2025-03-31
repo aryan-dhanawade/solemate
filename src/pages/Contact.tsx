@@ -70,8 +70,8 @@ const Contact = () => {
                   <Phone className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <h3 className="font-medium">Call Us</h3>
-                    <p className="text-sm text-muted-foreground">Customer Support: +1 (888) 555-1234</p>
-                    <p className="text-sm text-muted-foreground">Mon-Fri, 9am-6pm EST</p>
+                    <p className="text-sm text-muted-foreground">Customer Support: +91 (123) 456-7890</p>
+                    <p className="text-sm text-muted-foreground">Monday-Friday, 9am-6pm IST</p>
                   </div>
                 </div>
                 
@@ -79,8 +79,8 @@ const Contact = () => {
                   <MapPin className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <h3 className="font-medium">Visit Us</h3>
-                    <p className="text-sm text-muted-foreground">123 Shoe Lane, Fashion District</p>
-                    <p className="text-sm text-muted-foreground">New York, NY 10001</p>
+                    <p className="text-sm text-muted-foreground">123 XYZ Street, ABC District</p>
+                    <p className="text-sm text-muted-foreground">PQR City, PQ 123456</p>
                   </div>
                 </div>
               </CardContent>
