@@ -36,12 +36,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setIsLoading(true);
       const userData = await getProfile();
-      setUser(userData);
-      
-      // For demo purposes, consider specific emails as admin users
-      // In a real application, this would come from the backend
-      const adminEmails = ['admin@example.com', 'testuser@gmail.com']; // Add your admin emails here
-      setIsAdmin(adminEmails.includes(userData.email));
+      setUser(userData); // Add your admin emails here
+      setIsAdmin(userData.is_admin);
     } catch (error) {
       console.error('Failed to fetch user profile:', error);
       localStorage.removeItem('token');

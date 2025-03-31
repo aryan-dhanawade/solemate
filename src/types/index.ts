@@ -6,7 +6,7 @@ export interface User {
   email: string;
   phone?: string;
   address?: string;
-  isAdmin?: boolean; // Add isAdmin flag
+  is_admin?: boolean; // Add isAdmin flag
 }
 
 export interface AuthResponse {

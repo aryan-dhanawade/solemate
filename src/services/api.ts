@@ -12,23 +12,23 @@ async function handleResponse<T>(response: Response): Promise<T> {
   return response.json();
 }
 
-async function fetchWithAuth(endpoint: string, options: RequestInit = {}) {
-  const token = localStorage.getItem('token');
-  
-  const headers = {
-    'Content-Type': 'application/json',
-    ...options.headers,
-  };
-  
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+  async function fetchWithAuth(endpoint: string, options: RequestInit = {}) {
+    const token = localStorage.getItem('token');
+    
+    const headers = {
+      'Content-Type': 'application/json',
+      ...options.headers,
+    };
+    
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    
+    return fetch(`${API_URL}${endpoint}`, {
+      ...options,
+      headers,
+    });
   }
-  
-  return fetch(`${API_URL}${endpoint}`, {
-    ...options,
-    headers,
-  });
-}
 
 // Auth endpoints
 export async function register(data: RegisterData): Promise<AuthResponse> {
@@ -130,6 +130,6 @@ export async function contactUs(data: ContactUs): Promise<any> {
 
 // Admin endpoints
 export async function getAdminData(): Promise<AdminData> {
-  const response = await fetchWithAuth('/admin');
-  return handleResponse<AdminData>(response);
+  const response = await fetchWithAuth('/admin/');
+  return handleResponse<AdminData>(response); 
 }

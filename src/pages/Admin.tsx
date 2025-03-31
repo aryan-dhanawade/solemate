@@ -140,7 +140,7 @@ const Admin = () => {
               </TableCell>
               <TableCell>{formatCurrency(product.price)}</TableCell>
               <TableCell>{product.stock_quantity}</TableCell>
-              <TableCell>{product.category_id}</TableCell>
+              <TableCell>{product.category}</TableCell>
             </TableRow>
           ))}
         </TableBody>
