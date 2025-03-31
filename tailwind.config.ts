@@ -26,32 +26,32 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#FF3B30', // Red for primary buttons and accents
-					foreground: '#F5F5F5' // Off-white for text on primary
+					DEFAULT: 'hsl(var(--primary))', // Using HSL values for consistency
+					foreground: 'hsl(var(--primary-foreground))' 
 				},
 				secondary: {
-					DEFAULT: '#FFA500', // Neon Orange for secondary elements
-					foreground: '#121212' // Black for text on secondary
+					DEFAULT: 'hsl(var(--secondary))', 
+					foreground: 'hsl(var(--secondary-foreground))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
 				muted: {
-					DEFAULT: '#2A2A2A', // Slightly lighter black
-					foreground: '#CCCCCC' // Light gray
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--muted-foreground))'
 				},
 				accent: {
-					DEFAULT: '#FFA500', // Neon Orange for accents
-					foreground: '#121212' // Black for text on accent
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'
 				},
 				card: {
-					DEFAULT: '#1E1E1E', // Slightly lighter black for cards
-					foreground: '#F5F5F5' // Off-white for text on cards
+					DEFAULT: 'hsl(var(--card))',
+					foreground: 'hsl(var(--card-foreground))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

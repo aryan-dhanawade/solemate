@@ -76,6 +76,16 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Adding these specific overrides for text inputs with white backgrounds */
+  input[type="text"], 
+  input[type="email"], 
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  textarea {
+    @apply text-foreground bg-input;
+  }
 }
 
 .product-card {
