@@ -88,6 +88,39 @@
   }
 }
 
+/* Override text colors on light backgrounds */
+.bg-white, .bg-gray-50, .bg-gray-100 {
+  color: #333333; /* Darker text for better contrast */
+}
+
+/* Ensure form controls have proper contrast on white backgrounds */
+.bg-white label, 
+.bg-gray-50 label, 
+.bg-gray-100 label {
+  color: #222222;
+}
+
+.bg-white p, 
+.bg-gray-50 p, 
+.bg-gray-100 p,
+.bg-white span,
+.bg-gray-50 span,
+.bg-gray-100 span {
+  color: #333333;
+}
+
+.bg-white h1, 
+.bg-gray-50 h1, 
+.bg-gray-100 h1,
+.bg-white h2,
+.bg-gray-50 h2,
+.bg-gray-100 h2,
+.bg-white h3,
+.bg-gray-50 h3,
+.bg-gray-100 h3 {
+  color: #222222;
+}
+
 .product-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
