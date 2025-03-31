@@ -57,6 +57,7 @@ export async function login(credentials: LoginCredentials): Promise<AuthResponse
 
 export async function getProfile(): Promise<User> {
   const response = await fetchWithAuth('/auth/profile');
+  console.log(response)
   return handleResponse<User>(response);
 }
 

@@ -338,7 +338,7 @@ const Products = () => {
                     variant="outline" 
                     size="sm" 
                     onClick={resetFilters}
-                    className="w-full"
+                    className="w-full text-white"
                   >
                     Reset Filters
                   </Button>
@@ -353,7 +353,7 @@ const Products = () => {
                       placeholder="Search products..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10 text-gray-900"
+                      className="pl-10 text-white"
                     />
                     <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                       <Search className="h-4 w-4" />
@@ -374,20 +374,22 @@ const Products = () => {
                 
                 {/* Categories */}
                 <div className="space-y-2">
-                  <Label className="text-gray-900">Categories</Label>
+                  <Label className="text-white">Categories</Label>
                   <Select 
                     value={selectedCategory || undefined} 
                     onValueChange={handleCategoryChange}
+                    
                   >
-                    <SelectTrigger>
-                      <SelectValue placeholder="All Categories" />
+                    <SelectTrigger className="bg-black">
+                      <SelectValue placeholder="All Categories"  className="!text-white data-[placeholder]:!text-white" />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Categories</SelectItem>
+                    <SelectContent >
+                      <SelectItem value="all" >All Categories</SelectItem>
                       {categories.map(category => (
                         <SelectItem 
                           key={category.category_id} 
                           value={category.category_id.toString()}
+                          className="text-white"
                         >
                           {category.name}
                         </SelectItem>

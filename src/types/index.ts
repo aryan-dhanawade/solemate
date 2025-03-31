@@ -12,6 +12,7 @@ export interface User {
 export interface AuthResponse {
   access_token: string;
   user: User;
+  is_admin: boolean;
 }
 
 export interface LoginCredentials {

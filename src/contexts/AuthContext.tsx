@@ -36,7 +36,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setIsLoading(true);
       const userData = await getProfile();
-      setUser(userData); // Add your admin emails here
+      console.log(userData);
+      setUser(userData);
       setIsAdmin(userData.is_admin);
     } catch (error) {
       console.error('Failed to fetch user profile:', error);
@@ -57,10 +58,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const response = await login({ email, password });
       localStorage.setItem('token', response.access_token);
       setUser(response.user);
-      
-      // Check if the user is an admin
-      const adminEmails = ['admin@example.com', 'testuser@gmail.com']; // Add your admin emails here
-      setIsAdmin(adminEmails.includes(email));
+      setIsAdmin(response.is_admin);
       
       toast({
         title: "Login successful",

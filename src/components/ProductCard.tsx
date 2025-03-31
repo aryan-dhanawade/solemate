@@ -19,7 +19,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   // Placeholder image if no image_url is provided
-  const imageUrl = product.image_url || 'https://placehold.co/300x300?text=Shoe';
+  const imageUrl = product.img_link || 'https://placehold.co/300x300?text=Shoe';
 
   return (
     <Link to={`/products/${product.product_id}`}>

@@ -18,13 +18,13 @@
     --primary-foreground: 0 0% 96%; /* #F5F5F5 */
 
     --secondary: 39 100% 50%; /* #FFA500 */
-    --secondary-foreground: 0 0% 7%; /* #121212 */
+    --secondary-foreground: 0 0% 96%; /* #121212 */
 
     --muted: 0 0% 16%; /* #2A2A2A */
     --muted-foreground: 0 0% 80%; /* #CCCCCC */
 
     --accent: 39 100% 50%; /* #FFA500 */
-    --accent-foreground: 0 0% 7%; /* #121212 */
+    --accent-foreground: 0 0% 96%; /* #121212 */
 
     --destructive: 0 84.2% 60.2%; /* Original destructive */
     --destructive-foreground: 0 0% 96%; /* #F5F5F5 */
@@ -51,13 +51,13 @@
     --primary-foreground: 0 0% 96%; /* #F5F5F5 */
 
     --secondary: 39 100% 50%; /* #FFA500 */
-    --secondary-foreground: 0 0% 7%; /* #121212 */
+    --secondary-foreground: 0 0% 96%; /* #121212 */
 
     --muted: 0 0% 16%; /* #2A2A2A */
     --muted-foreground: 0 0% 80%; /* #CCCCCC */
 
     --accent: 39 100% 50%; /* #FFA500 */
-    --accent-foreground: 0 0% 7%; /* #121212 */
+    --accent-foreground: 0 0% 96%; /* #121212 */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 96%; /* #F5F5F5 */
@@ -140,4 +140,10 @@
 .product-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(255, 59, 48, 0.2);
+}
+
+/* Override the text color for the select trigger and its value */
+[data-lov-name="SelectTrigger"],
+[data-lov-name="SelectTrigger"] * {
+  color: white !important;
 }
