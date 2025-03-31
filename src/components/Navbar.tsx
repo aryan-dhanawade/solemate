@@ -55,13 +55,13 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-md py-2' : 'bg-white shadow-md py-2'
+      isScrolled ? 'bg-background shadow-md py-2' : 'bg-background shadow-md py-2'
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <h1 className="text-2xl font-bold text-primary">SoleStride</h1>
+            <h1 className="text-2xl font-bold text-primary">SoleMate</h1>
           </Link>
 
           {/* Desktop Navigation */}
