@@ -6,6 +6,7 @@ export interface User {
   email: string;
   phone?: string;
   address?: string;
+  isAdmin?: boolean; // Add isAdmin flag
 }
 
 export interface AuthResponse {
@@ -38,6 +39,7 @@ export interface Product {
   category_id?: number;
   category?: string;
   image_url?: string;
+  img_link?: string;
 }
 
 export interface CartItem {
@@ -59,7 +61,7 @@ export interface Order {
   order_date: string;
   status: string;
   total_amount: number;
-  order_items: OrderItem[];
+  order_items?: OrderItem[];
 }
 
 export interface CheckoutData {
@@ -75,10 +77,33 @@ export interface PaymentData {
   amount: number;
 }
 
-export interface ContactUs{
+export interface ContactUs {
   name: string;
   email: string;
   subject: string;
   message: string;
-  
+}
+
+export interface Customer {
+  customer_id: number;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  password?: string;
+}
+
+export interface ContactIssue {
+  contact_id: number;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+export interface AdminData {
+  customers: Customer[];
+  orders: Order[];
+  products: Product[];
+  issues: ContactIssue[];
 }

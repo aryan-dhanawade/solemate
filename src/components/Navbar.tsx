@@ -9,7 +9,8 @@ import {
   X, 
   LogIn,
   LogOut,
-  Home
+  Home,
+  ShieldCheck
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -26,7 +27,7 @@ import {
 import { Input } from '@/components/ui/input';
 
 const Navbar = () => {
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const { totalItems } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -80,6 +81,11 @@ const Navbar = () => {
             <Link to="/contact" className="text-foreground hover:text-primary transition-colors">
               Contact
             </Link>
+            {isAdmin && (
+              <Link to="/admin" className="text-foreground hover:text-primary transition-colors flex items-center">
+                <ShieldCheck className="h-4 w-4 mr-1" /> Admin
+              </Link>
+            )}
           </div>
 
           {/* Desktop Action Buttons */}
@@ -115,6 +121,13 @@ const Navbar = () => {
                       My Orders
                     </Link>
                   </DropdownMenuItem>
+                  {isAdmin && (
+                    <DropdownMenuItem asChild>
+                      <Link to="/admin" className="w-full cursor-pointer flex items-center">
+                        <ShieldCheck className="h-4 w-4 mr-2" /> Admin Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={logout} className="cursor-pointer">
                     <LogOut className="mr-2 h-4 w-4" />
@@ -226,6 +239,16 @@ const Navbar = () => {
               >
                 Contact
               </Link>
+              
+              {isAdmin && (
+                <Link 
+                  to="/admin" 
+                  className="text-foreground hover:text-primary transition-colors flex items-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <ShieldCheck className="h-5 w-5 mr-1" /> Admin Dashboard
+                </Link>
+              )}
               
               <div className="pt-2 border-t">
                 <Button 

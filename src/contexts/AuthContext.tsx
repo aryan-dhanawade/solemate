@@ -8,6 +8,7 @@ interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  isAdmin: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string, phone: string, address: string) => Promise<void>;
   logout: () => void;
@@ -18,6 +19,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -35,6 +37,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setIsLoading(true);
       const userData = await getProfile();
       setUser(userData);
+      
+      // For demo purposes, consider specific emails as admin users
+      // In a real application, this would come from the backend
+      const adminEmails = ['admin@example.com', 'testuser@gmail.com']; // Add your admin emails here
+      setIsAdmin(adminEmails.includes(userData.email));
     } catch (error) {
       console.error('Failed to fetch user profile:', error);
       localStorage.removeItem('token');
@@ -54,6 +61,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const response = await login({ email, password });
       localStorage.setItem('token', response.access_token);
       setUser(response.user);
+      
+      // Check if the user is an admin
+      const adminEmails = ['admin@example.com', 'testuser@gmail.com']; // Add your admin emails here
+      setIsAdmin(adminEmails.includes(email));
+      
       toast({
         title: "Login successful",
         description: `Welcome back, ${response.user.name}!`,
@@ -97,6 +109,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setUser(null);
+    setIsAdmin(false);
     toast({
       title: "Logged out",
       description: "You have been logged out successfully",
@@ -109,6 +122,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         user,
         isAuthenticated: !!user,
         isLoading,
+        isAdmin,
         login: handleLogin,
         register: handleRegister,
         logout: handleLogout,

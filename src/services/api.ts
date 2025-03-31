@@ -1,5 +1,5 @@
 
-import { AuthResponse, Category, CheckoutData, LoginCredentials, Order, PaymentData, Product, RegisterData, User, ContactUs } from "@/types";
+import { AuthResponse, Category, CheckoutData, ContactUs, LoginCredentials, Order, PaymentData, Product, RegisterData, User, AdminData } from "@/types";
 
 // Changed from example.com to the actual server
 const API_URL = 'http://192.168.1.6:5000/api'; // Adjust this to your actual Flask API URL
@@ -128,3 +128,8 @@ export async function contactUs(data: ContactUs): Promise<any> {
   return handleResponse(response);
 }
 
+// Admin endpoints
+export async function getAdminData(): Promise<AdminData> {
+  const response = await fetchWithAuth('/admin');
+  return handleResponse<AdminData>(response);
+}

@@ -1,120 +1,166 @@
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
-import { Button } from '@/components/ui/button';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Eye, EyeOff, AlarmClock, AlertTriangle } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+
+// Define form schema
+const loginSchema = z.object({
+  email: z.string().email({ message: 'Please enter a valid email address' }),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
+});
+
+type LoginFormValues = z.infer<typeof loginSchema>;
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
+  const { toast } = useToast();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    
-    if (!email || !password) {
-      setError('Please fill in all fields');
-      return;
-    }
+  const form = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
+  // Redirect if already authenticated
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
+
+  const onSubmit = async (data: LoginFormValues) => {
     try {
       setIsLoading(true);
-      await login(email, password);
+      await login(data.email, data.password);
       navigate('/');
-    } catch (err) {
-      setError('Invalid email or password');
-      console.error('Login error:', err);
+    } catch (error) {
+      console.error('Login failed:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      
-      <main className="flex-1 py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-md mx-auto">
-            <Card>
-              <CardHeader className="space-y-1">
-                <CardTitle className="text-2xl font-bold text-center">Sign in to your account</CardTitle>
-                <CardDescription className="text-center">
-                  Enter your email and password to login
-                </CardDescription>
-              </CardHeader>
-              
-              <CardContent>
-                {error && (
-                  <div className="bg-destructive/15 text-destructive p-3 rounded-md mb-4">
-                    {error}
-                  </div>
+      <div className="flex-1 flex items-center justify-center px-4 py-24">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold">Welcome Back</h1>
+            <p className="text-muted-foreground mt-2">
+              Sign in to your account to continue
+            </p>
+          </div>
+
+          <Alert className="mb-6 bg-blue-50 text-blue-700 border-blue-100">
+            <AlertDescription className="flex items-center">
+              <AlarmClock className="h-4 w-4 mr-2" />
+              <span>
+                For admin access, use <strong>testuser@gmail.com</strong> / password
+              </span>
+            </AlertDescription>
+          </Alert>
+
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input 
+                        placeholder="your@email.com" 
+                        {...field} 
+                        autoComplete="email"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
-                
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="you@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="password">Password</Label>
-                      <Link to="/forgot-password" className="text-sm text-primary hover:underline">
-                        Forgot password?
-                      </Link>
-                    </div>
-                    <Input
-                      id="password"
-                      type="password"
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-                  
-                  <Button 
-                    type="submit" 
-                    className="w-full" 
-                    disabled={isLoading}
-                  >
-                    {isLoading ? 'Signing in...' : 'Sign in'}
-                  </Button>
-                </form>
-              </CardContent>
-              
-              <CardFooter className="flex flex-col space-y-4">
-                <div className="text-center text-sm">
-                  Don't have an account?{' '}
-                  <Link to="/register" className="text-primary hover:underline">
-                    Sign up
-                  </Link>
-                </div>
-              </CardFooter>
-            </Card>
+              />
+
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          type={showPassword ? 'text' : 'password'}
+                          {...field}
+                          placeholder="••••••••"
+                          autoComplete="current-password"
+                        />
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="absolute right-2 top-1/2 -translate-y-1/2"
+                          onClick={togglePasswordVisibility}
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
+                        </Button>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button 
+                type="submit" 
+                className="w-full" 
+                disabled={isLoading}
+              >
+                {isLoading ? 'Signing in...' : 'Sign In'}
+              </Button>
+            </form>
+          </Form>
+
+          <div className="mt-6 text-center">
+            <p className="text-sm text-muted-foreground">
+              Don't have an account yet?{' '}
+              <Link to="/register" className="text-primary font-semibold hover:underline">
+                Sign up
+              </Link>
+            </p>
           </div>
         </div>
-      </main>
-      
-      <Footer />
+      </div>
     </div>
   );
 };
