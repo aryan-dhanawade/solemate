@@ -5,66 +5,65 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%; /* #121212 */
-    --foreground: 0 0% 96%; /* #F5F5F5 */
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
 
-    --card: 0 0% 12%; /* #1E1E1E */
-    --card-foreground: 0 0% 96%; /* #F5F5F5 */
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
 
-    --popover: 0 0% 12%; /* #1E1E1E */
-    --popover-foreground: 0 0% 96%; /* #F5F5F5 */
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
 
-    --primary: 4 100% 59%; /* #FF3B30 */
-    --primary-foreground: 0 0% 96%; /* #F5F5F5 */
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 20% 98%;
 
-    --secondary: 39 100% 50%; /* #FFA500 */
-    --secondary-foreground: 0 0% 96%; /* #121212 */
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
 
-    --muted: 0 0% 16%; /* #2A2A2A */
-    --muted-foreground: 0 0% 80%; /* #CCCCCC */
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
 
-    --accent: 39 100% 50%; /* #FFA500 */
-    --accent-foreground: 0 0% 96%; /* #121212 */
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
 
-    --destructive: 0 84.2% 60.2%; /* Original destructive */
-    --destructive-foreground: 0 0% 96%; /* #F5F5F5 */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: 0 0% 20%; /* #333333 */
-    --input: 0 0% 20%; /* #333333 */
-    --ring: 4 100% 59%; /* #FF3B30 */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Keep dark mode as is, since our theme is already dark */
-    --background: 0 0% 7%; /* #121212 */
-    --foreground: 0 0% 96%; /* #F5F5F5 */
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
 
-    --card: 0 0% 12%; /* #1E1E1E */
-    --card-foreground: 0 0% 96%; /* #F5F5F5 */
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 0 0% 12%; /* #1E1E1E */
-    --popover-foreground: 0 0% 96%; /* #F5F5F5 */
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 4 100% 59%; /* #FF3B30 */
-    --primary-foreground: 0 0% 96%; /* #F5F5F5 */
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 20% 98%;
 
-    --secondary: 39 100% 50%; /* #FFA500 */
-    --secondary-foreground: 0 0% 96%; /* #121212 */
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
 
-    --muted: 0 0% 16%; /* #2A2A2A */
-    --muted-foreground: 0 0% 80%; /* #CCCCCC */
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
 
-    --accent: 39 100% 50%; /* #FFA500 */
-    --accent-foreground: 0 0% 96%; /* #121212 */
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 96%; /* #F5F5F5 */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: 0 0% 20%; /* #333333 */
-    --input: 0 0% 20%; /* #333333 */
-    --ring: 4 100% 59%; /* #FF3B30 */
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 263.4 70% 50.4%;
   }
 }
 
@@ -72,78 +71,7 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
   }
-  
-  /* Adding these specific overrides for text inputs with white backgrounds */
-  input[type="text"], 
-  input[type="email"], 
-  input[type="password"],
-  input[type="number"],
-  input[type="tel"],
-  textarea {
-    @apply text-foreground bg-input;
-  }
-}
-
-/* Override text colors on light backgrounds */
-.bg-white, .bg-gray-50, .bg-gray-100 {
-  color: #333333; /* Darker text for better contrast */
-}
-
-/* Ensure form controls have proper contrast on white backgrounds */
-.bg-white label, 
-.bg-gray-50 label, 
-.bg-gray-100 label {
-  color: #222222;
-}
-
-.bg-white p, 
-.bg-gray-50 p, 
-.bg-gray-100 p,
-.bg-white span,
-.bg-gray-50 span,
-.bg-gray-100 span {
-  color: #333333;
-}
-
-.bg-white h1, 
-.bg-gray-50 h1, 
-.bg-gray-100 h1,
-.bg-white h2,
-.bg-gray-50 h2,
-.bg-gray-100 h2,
-.bg-white h3,
-.bg-gray-50 h3,
-.bg-gray-100 h3 {
-  color: #222222;
-}
-
-/* Card-specific overrides to ensure text is visible */
-.card, 
-.bg-card {
-  color: var(--card-foreground);
-}
-
-/* Card with white background needs dark text */
-.bg-white.card,
-.card.bg-white {
-  color: #333333;
-}
-
-.product-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(255, 59, 48, 0.2);
-}
-
-/* Override the text color for the select trigger and its value */
-[data-lov-name="SelectTrigger"],
-[data-lov-name="SelectTrigger"] * {
-  color: white !important;
 }

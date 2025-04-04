@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <Link to={`/products/${product.product_id}`}>
-      <div className="product-card bg-card rounded-lg shadow-md overflow-hidden hover:shadow-lg">
+      <div className="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
         <div className="relative h-60 overflow-hidden">
           <img 
             src={imageUrl} 
@@ -37,8 +37,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           )}
         </div>
         <div className="p-4">
-          <h3 className="font-semibold text-lg mb-1 text-card-foreground">{product.name}</h3>
-          <p className="text-card-foreground/80 text-sm mb-2 line-clamp-2">{product.description}</p>
+          <h3 className="font-semibold text-lg mb-1">{product.name}</h3>
+          <p className="text-muted-foreground text-sm mb-2 line-clamp-2">{product.description}</p>
           <div className="flex items-center justify-between mt-3">
             <span className="text-primary font-bold">${product.price.toFixed(2)}</span>
             <Button 
