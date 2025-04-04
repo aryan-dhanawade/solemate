@@ -2,7 +2,7 @@
 import { AuthResponse, Category, CheckoutData, ContactUs, LoginCredentials, Order, PaymentData, Product, RegisterData, User, AdminData } from "@/types";
 
 // Changed from example.com to the actual server
-const API_URL = 'http://192.168.1.6:5000/api'; // Adjust this to your actual Flask API URL
+const API_URL = 'http://10.125.7.118:5000/api'; // Adjust this to your actual Flask API URL
 
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
