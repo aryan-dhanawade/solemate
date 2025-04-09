@@ -9,6 +9,12 @@ export interface User {
   is_admin?: boolean; // Add isAdmin flag
 }
 
+export interface newsLetterResponse{
+  message: string;
+  email: string;
+  
+}
+
 export interface AuthResponse {
   access_token: string;
   user: User;

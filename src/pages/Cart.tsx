@@ -90,7 +90,7 @@ const Cart = () => {
                         <div className="col-span-6 flex gap-4">
                           <div className="w-20 h-20 bg-gray-100 rounded-md overflow-hidden flex-shrink-0">
                             <img 
-                              src={item.product.image_url || `https://placehold.co/300x300?text=${item.product.name}`} 
+                              src={item.product.img_link || `https://placehold.co/300x300?text=${item.product.name}`} 
                               alt={item.product.name} 
                               className="w-full h-full object-cover"
                             />

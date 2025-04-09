@@ -1,8 +1,8 @@
 
-import { AuthResponse, Category, CheckoutData, ContactUs, LoginCredentials, Order, PaymentData, Product, RegisterData, User, AdminData } from "@/types";
+import { AuthResponse, Category, CheckoutData, ContactUs, LoginCredentials, Order, PaymentData, Product, RegisterData, User, AdminData, newsLetterResponse } from "@/types";
 
 // Changed from example.com to the actual server
-const API_URL = 'http://192.168.222.191:5000/api'; // Adjust this to your actual Flask API URL
+const API_URL = 'http://127.0.0.1:5000/api'; // Adjust this to your actual Flask API URL
 
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
@@ -133,4 +133,21 @@ export async function contactUs(data: ContactUs): Promise<any> {
 export async function getAdminData(): Promise<AdminData> {
   const response = await fetchWithAuth('/admin/');
   return handleResponse<AdminData>(response); 
+}
+
+
+// News Letter Subscription
+
+export async function subscribeToNewsLetter(data: User["email"]): Promise<newsLetterResponse>{
+  const response = await fetchWithAuth(`${API_URL}/api/auth/subscribe`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  return handleResponse<newsLetterResponse>(response);
+
+
 }

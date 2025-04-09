@@ -5,22 +5,47 @@ import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
-import { getCategories, getProducts } from '@/services/api';
+import { getCategories, getProducts, subscribeToNewsLetter } from '@/services/api';
 import { Product, Category } from '@/types';
 import { ArrowRight } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
+import { subscribe } from 'diagnostics_channel';
 
 const Index = () => {
+  const { toast } = useToast();
+
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [randomImage, setRandomImage] = useState("");
+
+
+  // const handleNewsLetterSubmit = async (e: FormEvent<HTMLFormElement>){
+  //   e.preventDefault();
+
+
+  //   try{
+  //     const respone = await subscribeToNewsLetter(newsletterEmail )
+  //   }
+  // }
+
+  useEffect(() => {{
+    const randomImageGenerator = async() => {
+      try{
+
+      }
+      catch{
+
+      }
+    }
+  }})
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        // In a real app, you might have a separate endpoint for featured products
         const productsData = await getProducts();
-        setFeaturedProducts(productsData.slice(0, 4)); // Just take first 4 products as featured
+        setFeaturedProducts(productsData.slice(0, 4)); 
         
         const categoriesData = await getCategories();
         setCategories(categoriesData);
@@ -80,7 +105,6 @@ const Index = () => {
     }
 
     if (!isLoading && categories.length === 0) {
-      // Create placeholder categories if API returns empty
       const placeholderCategories: Category[] = [
         { category_id: 1, name: 'Sneakers' },
         { category_id: 2, name: 'Formal' },
@@ -114,7 +138,7 @@ const Index = () => {
           </div>
           <div className="md:w-1/2 flex justify-center">
             <img 
-              src="https://placehold.co/600x400?text=Premium+Shoes" 
+              src="assets/f3.jfif" 
               alt="Premium Shoes Collection" 
               className="rounded-lg shadow-xl max-w-full h-auto"
             />
