@@ -20,25 +20,6 @@ const Index = () => {
   const [randomImage, setRandomImage] = useState("");
 
 
-  // const handleNewsLetterSubmit = async (e: FormEvent<HTMLFormElement>){
-  //   e.preventDefault();
-
-
-  //   try{
-  //     const respone = await subscribeToNewsLetter(newsletterEmail )
-  //   }
-  // }
-
-  useEffect(() => {{
-    const randomImageGenerator = async() => {
-      try{
-
-      }
-      catch{
-
-      }
-    }
-  }})
 
   useEffect(() => {
     const fetchData = async () => {
@@ -138,7 +119,7 @@ const Index = () => {
           </div>
           <div className="md:w-1/2 flex justify-center">
             <img 
-              src="assets/f3.jfif" 
+              src="assets/sneaker1.jfif" 
               alt="Premium Shoes Collection" 
               className="rounded-lg shadow-xl max-w-full h-auto"
             />
@@ -179,7 +160,7 @@ const Index = () => {
                 className="group relative h-64 overflow-hidden rounded-lg"
               >
                 <img 
-                  src={`https://placehold.co/600x400?text=${category.name}`} 
+                  src={`assets/${category.name}.png`} 
                   alt={category.name} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -202,7 +183,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-card p-6 rounded-lg shadow-md text-center">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="black">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
@@ -212,7 +193,7 @@ const Index = () => {
             
             <div className="bg-card p-6 rounded-lg shadow-md text-center">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="black">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
@@ -222,7 +203,7 @@ const Index = () => {
             
             <div className="bg-card p-6 rounded-lg shadow-md text-center">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="black">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>

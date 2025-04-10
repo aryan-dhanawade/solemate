@@ -25,29 +25,50 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    
-    // Basic validation
-    if (!name || !email || !password || !confirmPassword || !phone || !address) {
-      setError('Please fill in all fields');
+  
+    // Trim inputs
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedPhone = phone.trim();
+    const trimmedAddress = address.trim();
+  
+    // Validation rules
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{10}$/; 
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;
+  
+    // Field validations
+    if (!trimmedName || !trimmedEmail || !password || !confirmPassword || !trimmedPhone || !trimmedAddress) {
+      setError('Please fill in all fields.');
       return;
     }
-
+  
+    if (!emailRegex.test(trimmedEmail)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+  
+    if (!phoneRegex.test(trimmedPhone)) {
+      setError('Please enter a valid 10-digit phone number.');
+      return;
+    }
+  
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError('Passwords do not match.');
       return;
     }
-
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters long');
+  
+    if (!passwordRegex.test(password)) {
+      setError('Password must be at least 6 characters long and include a number, a letter, and a special character.');
       return;
     }
-
+  
     try {
       setIsLoading(true);
-      await register(name, email, password, phone, address);
+      await register(trimmedName, trimmedEmail, password, trimmedPhone, trimmedAddress);
       navigate('/');
     } catch (err) {
-      setError('Failed to create account');
+      setError('Failed to create account. Please try again later.');
       console.error('Registration error:', err);
     } finally {
       setIsLoading(false);

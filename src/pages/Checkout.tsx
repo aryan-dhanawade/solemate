@@ -163,7 +163,9 @@ const Checkout = () => {
       };
 
       // Process checkout
+      console.log(JSON.stringify(checkoutData));
       const orderResponse = await checkout(checkoutData);
+  
 
       // Process payment
       const paymentData = {
@@ -171,8 +173,9 @@ const Checkout = () => {
         payment_method: paymentMethod,
         amount: totalPrice
       };
-
+      console.log(paymentData);
       await processPayment(paymentData);
+
 
       // Success
       toast({

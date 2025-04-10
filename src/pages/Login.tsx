@@ -22,9 +22,21 @@ import Navbar from '@/components/Navbar';
 
 // Define form schema
 const loginSchema = z.object({
-  email: z.string().email({ message: 'Please enter a valid email address' }),
-  password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
+  email: z
+    .string()
+    .trim()
+    .min(1, { message: 'Email is required' })
+    .email({ message: 'Please enter a valid email address' }),
+
+  password: z
+    .string()
+    .min(6, { message: 'Password must be at least 6 characters' })
+    .regex(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
+      { message: 'Password must include a letter, a number, and a special character' }
+    ),
 });
+
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 

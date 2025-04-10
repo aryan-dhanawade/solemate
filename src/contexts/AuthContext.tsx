@@ -56,6 +56,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setIsLoading(true);
       const response = await login({ email, password });
+      console.log(response);
       localStorage.setItem('token', response.access_token);
       setUser(response.user);
       setIsAdmin(response.is_admin);
@@ -81,6 +82,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setIsLoading(true);
       const response = await register({ name, email, password, phone, address });
+      console.log(response);
       localStorage.setItem('token', response.access_token);
       setUser(response.user);
       toast({

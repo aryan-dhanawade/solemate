@@ -333,12 +333,12 @@ const Products = () => {
             <div className="hidden md:block w-64 sticky top-24 bg-white rounded-lg shadow-sm p-6">
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-lg font-semibold mb-4 text-gray-900">Filters</h2>
+                  <h2 className="text-lg font-semibold mb-4 text-black-900">Filters</h2>
                   <Button 
                     variant="outline" 
                     size="sm" 
                     onClick={resetFilters}
-                    className="w-full text-white"
+                    className="w-full text-black"
                   >
                     Reset Filters
                   </Button>
@@ -353,7 +353,7 @@ const Products = () => {
                       placeholder="Search products..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10 text-white"
+                      className="pl-10 text-black"
                     />
                     <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                       <Search className="h-4 w-4" />
@@ -380,8 +380,8 @@ const Products = () => {
                     onValueChange={handleCategoryChange}
                     
                   >
-                    <SelectTrigger className="bg-black">
-                      <SelectValue placeholder="All Categories"  className="!text-white data-[placeholder]:!text-white" />
+                    <SelectTrigger className="bg-white">
+                      <SelectValue placeholder="All Categories"  className="text-white" />
                     </SelectTrigger>
                     <SelectContent >
                       <SelectItem value="all" >All Categories</SelectItem>
@@ -389,7 +389,7 @@ const Products = () => {
                         <SelectItem 
                           key={category.category_id} 
                           value={category.category_id.toString()}
-                          className="text-white"
+                          className="text-black"
                         >
                           {category.name}
                         </SelectItem>
